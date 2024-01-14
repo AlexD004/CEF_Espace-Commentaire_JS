@@ -99,7 +99,14 @@
 <script>
 
   // Get and stock form values with variables
+  let firstName = document.getElementById('first-name').value;
 
+  let firstNameInput = document.getElementById('first-name');
+  firstNameInput.addEventListener('change', function(){
+    console.log(firstName);
+  });
+
+  
   // Test if values exist (Try-Catch)
     // Values exists :
       // Creation of the new comment : "createComment ()"
