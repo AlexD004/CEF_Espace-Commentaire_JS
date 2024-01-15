@@ -98,8 +98,9 @@
 </div>
 <script>
 
-  
+  // Set up global variables
   const form = document.querySelector('form');
+  const messageForUser = document.getElementById('error-message');
 
   // Actions when form is submit
   form.onsubmit = () => {
@@ -109,27 +110,54 @@
     let lastName = document.getElementById('last-name').value;
     let message = document.getElementById('message').value;
 
-    // Block refresh when submit form
-    return false;
+    // Test if values exist
+    try {
+
+      if ( firstName.length < 1 || lastName.length < 1 || message.length < 1 ) {
+        throw new Error("All fields are required !");
+      }
+
+      // Creation of the new comment : "createComment ()"
+
+      // Sending of the new comment : "sendComment ()"
+
+      clearForm();
+
+    } catch (err){
+
+      showError(err);
+
+    } finally {
+
+      // Block refresh when submit form
+      return false;
+
+    }  
   }
 
-  
-  
-  // Test if values exist (Try-Catch)
-    // Values exists :
-      // Creation of the new comment : "createComment ()"
-      // Sending of the new comment : "sendComment ()"
-      // Clearing the form : "clearForm()"
-
-    // Values doesn't exists :
-      // Inform user and dev : "showError"
-  
 
   // Set functions
+
     // Function "showError" : Get error, Show in console, Show div error in form
+    let showError = (err) => {
+
+      // Message for devs
+      console.log(err.message);
+      // Message for users
+      messageForUser.style.display = "block";
+
+    }
+
     // Function "createComment" : Get structure from existing DOM, change values with form values, stock all into a new variable
+
     // Function "sendComment" : Add the comment created below the list in the DOM
+
     // Function "clearForm" : remove all values in the form
+    let clearForm = () => {
+
+      messageForUser.style.display = "none";
+
+    }
 
 </script>
 </body>
