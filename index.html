@@ -96,5 +96,41 @@
     </div>
   </div>
 </div>
+<script>
+
+  
+  const form = document.querySelector('form');
+
+  // Actions when form is submit
+  form.onsubmit = () => {
+
+    // Get and stock form values with variables
+    let firstName = document.getElementById('first-name').value;
+    let lastName = document.getElementById('last-name').value;
+    let message = document.getElementById('message').value;
+
+    // Block refresh when submit form
+    return false;
+  }
+
+  
+  
+  // Test if values exist (Try-Catch)
+    // Values exists :
+      // Creation of the new comment : "createComment ()"
+      // Sending of the new comment : "sendComment ()"
+      // Clearing the form : "clearForm()"
+
+    // Values doesn't exists :
+      // Inform user and dev : "showError"
+  
+
+  // Set functions
+    // Function "showError" : Get error, Show in console, Show div error in form
+    // Function "createComment" : Get structure from existing DOM, change values with form values, stock all into a new variable
+    // Function "sendComment" : Add the comment created below the list in the DOM
+    // Function "clearForm" : remove all values in the form
+
+</script>
 </body>
 </html>
