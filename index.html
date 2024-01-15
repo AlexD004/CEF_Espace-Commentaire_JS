@@ -143,7 +143,7 @@
   let createAndSendComment = ( firstName, lastName, message ) => {
 
     let commentList = document.getElementById('comment-list'); // Get the container of all comments
-    let comment = commentList.firstElementChild; // Get the HTML structure of one comment
+    let comment = commentList.lastElementChild; // Get the HTML structure of one comment
 
     let newComment = comment.cloneNode(true); // Set a new comment, based on the structure picked-up
     let commentSender = newComment.querySelector('h3'); // Set a variable to target the user name location
