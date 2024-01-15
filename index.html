@@ -98,29 +98,25 @@
 </div>
 <script>
 
-  // Set up global variables
+  // Set up global variables (needed in several functions or in the first level of function)
   const form = document.querySelector('form');
   const messageForUser = document.getElementById('error-message');
 
-  // Actions when form is submit
+
   form.onsubmit = () => {
 
-    // Get and stock form values with variables
+    // Set up variables with values submited
     let firstName = document.getElementById('first-name').value;
     let lastName = document.getElementById('last-name').value;
     let message = document.getElementById('message').value;
 
-    // Test if values exist
     try {
 
       if ( firstName.length < 1 || lastName.length < 1 || message.length < 1 ) {
         throw new Error("All fields are required !");
       }
 
-      // Creation of the new comment : "createComment ()"
-
-      // Sending of the new comment : "sendComment ()"
-
+      createAndSendComment( firstName, lastName, message );
       clearForm();
 
     } catch (err){
@@ -129,35 +125,41 @@
 
     } finally {
 
-      // Block refresh when submit form
-      return false;
+      return false; // Block refresh when submit form
 
     }  
   }
 
 
-  // Set functions
+  //-----  Set functions -----//
 
-    // Function "showError" : Get error, Show in console, Show div error in form
-    let showError = (err) => {
+  let showError = (err) => {
 
-      // Message for devs
-      console.log(err.message);
-      // Message for users
-      messageForUser.style.display = "block";
+    console.log(err.message); // Message for devs
+    messageForUser.style.display = "block"; // Message for users
 
-    }
+  }
 
-    // Function "createComment" : Get structure from existing DOM, change values with form values, stock all into a new variable
+  let createAndSendComment = ( firstName, lastName, message ) => {
 
-    // Function "sendComment" : Add the comment created below the list in the DOM
+    let commentList = document.getElementById('comment-list'); // Get the container of all comments
+    let newComment = commentList.lastElementChild.cloneNode(true); // Set a new comment, based on the structure of an existing comment
+    let commentSender = newComment.querySelector('h3'); // Set a variable to target the user name location
+    let commentMessage = newComment.querySelector('.prose p'); // Set a variable to target the message location
 
-    // Function "clearForm" : remove all values in the form
-    let clearForm = () => {
+    commentSender.textContent = firstName + ' ' + lastName; // Set the user name with values submited 
+    commentMessage.textContent = message; // Set the message with values submited
 
-      messageForUser.style.display = "none";
+    commentList.appendChild(newComment); // Add the created new comment at the end of list
 
-    }
+  }
+
+  let clearForm = () => {
+
+    messageForUser.style.display = "none"; // Set the error message for user on the default value
+    form.reset();
+    
+  }
 
 </script>
 </body>
