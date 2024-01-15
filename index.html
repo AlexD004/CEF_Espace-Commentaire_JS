@@ -98,13 +98,14 @@
 </div>
 <script>
 
-  // Set up global variables
+  // Set up global variables (needed in several functions or in the first level of function)
   const form = document.querySelector('form');
   const messageForUser = document.getElementById('error-message');
 
+
   form.onsubmit = () => {
 
-    // Get and stock form values with variables
+    // Set up variables with values submited
     let firstName = document.getElementById('first-name').value;
     let lastName = document.getElementById('last-name').value;
     let message = document.getElementById('message').value;
@@ -124,8 +125,7 @@
 
     } finally {
 
-      // Block refresh when submit form
-      return false;
+      return false; // Block refresh when submit form
 
     }  
   }
@@ -143,9 +143,7 @@
   let createAndSendComment = ( firstName, lastName, message ) => {
 
     let commentList = document.getElementById('comment-list'); // Get the container of all comments
-    let comment = commentList.lastElementChild; // Get the HTML structure of one comment
-
-    let newComment = comment.cloneNode(true); // Set a new comment, based on the structure picked-up
+    let newComment = commentList.lastElementChild.cloneNode(true); // Set a new comment, based on the structure of an existing comment
     let commentSender = newComment.querySelector('h3'); // Set a variable to target the user name location
     let commentMessage = newComment.querySelector('.prose p'); // Set a variable to target the message location
 
@@ -158,7 +156,8 @@
 
   let clearForm = () => {
 
-    messageForUser.style.display = "none";
+    messageForUser.style.display = "none"; // Set the error message for user on the default value
+    form.reset();
     
   }
 
